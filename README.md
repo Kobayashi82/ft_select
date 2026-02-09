@@ -10,7 +10,7 @@
 </div>
 
 <div align="center">
-  <img src="/ft_select.png">
+  <img src="/W_ft_select.png">
 </div>
 
 # ft_select
