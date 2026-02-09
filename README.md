@@ -2,7 +2,7 @@
 
 ![WIP](https://img.shields.io/badge/work%20in%20progress-yellow?style=for-the-badge)
 ![System & Kernel](https://img.shields.io/badge/System-brown?style=for-the-badge)
-![Filesystem](https://img.shields.io/badge/Filesystem-Directory-blue?style=for-the-badge)
+![Interactive](https://img.shields.io/badge/Interactive-Selection-blue?style=for-the-badge)
 ![C Language](https://img.shields.io/badge/Language-C-red?style=for-the-badge)
 
 *A reimplementation of the classic select command*
