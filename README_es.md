@@ -30,7 +30,7 @@ make
 ## Uso
 
 ```bash
-./ft_select [opciones] [archivo ...]
+./ft_select ...
 ```
 
 ### Opciones
