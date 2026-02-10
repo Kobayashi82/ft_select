@@ -6,7 +6,7 @@
 #    By: vzurera- <vzurera-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/09 12:29:00 by vzurera-          #+#    #+#              #
-#    Updated: 2026/02/10 13:11:25 by vzurera-         ###   ########.fr        #
+#    Updated: 2026/02/10 21:32:28 by vzurera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ NAME		= ft_select
 # ── FLAGS ── #
 # ─────────── #
 
-CC			= clang
+CC			= clang -g
 CFLAGS		= -Wall -Wextra -Werror
 
 # ───────────────── #
@@ -60,9 +60,13 @@ SRC_DIR		= src/
 # ─────────── #
 
 SRCS		= main.c		\
+			  choices.c		\
 			  signal.c		\
 			  terminal.c	\
 			  termcap.c		\
+			  input.c		\
+			  selection.c	\
+			  search.c		\
 			  utils.c
 
 # ───────────────────────────────────────────────────────────── #

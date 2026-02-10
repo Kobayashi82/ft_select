@@ -6,11 +6,13 @@
 /*   By: vzurera- <vzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:33:40 by vzurera-          #+#    #+#             */
-/*   Updated: 2026/02/10 15:00:50 by vzurera-         ###   ########.fr       */
+/*   Updated: 2026/02/10 16:34:33 by vzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "select.h"
+#include "signals.h"
+#include <stddef.h>
+#include <signal.h>
 
 // if (raw_mode) {
 // 	char byte = 3;

@@ -6,7 +6,7 @@
 /*   By: vzurera- <vzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:00:19 by vzurera-          #+#    #+#             */
-/*   Updated: 2026/02/10 15:06:07 by vzurera-         ###   ########.fr       */
+/*   Updated: 2026/02/10 20:51:28 by vzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
 
-int	ft_strlcpy(char *dst, const char *src, int dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, int dstsize)
 {
 	int		i;
 	int		srclen;
@@ -77,4 +77,35 @@ void	*ft_memset(void *b, int c, int len)
 	while (len--)
 		*p++ = (unsigned char)c;
 	return (b);
+}
+
+void	*ft_memcpy(void *dst, const void *src, int n)
+{
+	unsigned char		*d;
+	const unsigned char	*s;
+
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	if (!d && !s && n)
+		return (dst);
+	if (!n)
+		return (dst);
+	while (n-- > 0)
+		*d++ = *s++;
+	return (dst);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	while (*s)
+	{
+		if (*s == (char)c)
+			break ;
+		s++;
+	}
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
 }

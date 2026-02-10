@@ -6,19 +6,30 @@
 /*   By: vzurera- <vzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:35:46 by vzurera-          #+#    #+#             */
-/*   Updated: 2026/02/10 15:12:49 by vzurera-         ###   ########.fr       */
+/*   Updated: 2026/02/10 17:37:33 by vzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "select.h"
+#include "terminal.h"
+#include "utils.h"
+#include <termcap.h>
+#include <fcntl.h>
 
 void	terminal_do_action(const char *action)
 {
 	char	*value;
+	int		tty_fd;
 
 	value = tgetstr(action, NULL);
 	if (value)
-		write(STDOUT_FILENO, value, ft_strlen(value));
+	{
+		tty_fd = open("/dev/tty", O_WRONLY);
+		if (tty_fd >= 0)
+		{
+			write(tty_fd, value, ft_strlen(value));
+			close(tty_fd);
+		}
+	}
 }
 
 void	terminal_update_limits(t_terminal *terminal)

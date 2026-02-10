@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   choices.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vzurera- <vzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/10 13:00:36 by vzurera-          #+#    #+#             */
-/*   Updated: 2026/02/10 20:51:36 by vzurera-         ###   ########.fr       */
+/*   Created: 2026/02/10 16:12:59 by vzurera-          #+#    #+#             */
+/*   Updated: 2026/02/10 17:02:33 by vzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
+typedef struct s_choices
+{
+	char				*value;
+	int					selected;
+	int					marked;
+	struct s_choices	*prev;
+	struct s_choices	*next;
+}	t_choices;
 
-size_t	ft_strlen(const char *str);
-int		ft_strcmp(const char *s1, const char *s2);
-size_t	ft_strlcpy(char *dst, const char *src, int dstsize);
-char	*ft_strdup(const char *s1);
-void	*ft_memset(void *b, int c, int len);
-void	*ft_memcpy(void *dst, const void *src, int n);
-char	*ft_strchr(const char *s, int c);
+int		choices_load(int argc, char **argv, t_choices **choices);
+void	choices_free(t_choices *choices, int is_error);
+void	choices_print(t_choices *choices);
