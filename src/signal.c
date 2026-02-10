@@ -6,14 +6,11 @@
 /*   By: vzurera- <vzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:33:40 by vzurera-          #+#    #+#             */
-/*   Updated: 2026/02/10 12:33:41 by vzurera-         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:00:50 by vzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select.h"
-#include <signal.h>
-
-int	g_signal;
 
 // if (raw_mode) {
 // 	char byte = 3;
@@ -21,22 +18,36 @@ int	g_signal;
 // }
 static void	sigint_handler(int sig)
 {
-	g_signal = sig;
+	signal_number(sig);
 }
 
 // terminal_initialize();
 // if (raw_mode) cursor_get();
 static void	sigwinch_handler(int sig)
 {
-	g_signal = sig;
+	signal_number(sig);
 }
 
-void	signals_set(void)
+void	signal_set(void)
 {
-	signal(SIGINT, sigint_handler);
-	signal(SIGWINCH, sigwinch_handler);
-	signal(SIGQUIT, sigwinch_handler);
-	signal(SIGTSTP, sigwinch_handler);
-	signal(SIGTERM, sigwinch_handler);
-	g_signal = 0;
+	struct sigaction	sa;
+
+	sa.sa_handler = sigint_handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sa, NULL);
+	sigaction(SIGTERM, &sa, NULL);
+	sa.sa_handler = sigwinch_handler;
+	sigaction(SIGWINCH, &sa, NULL);
+}
+
+int	signal_number(int n)
+{
+	static int	sig_n;
+
+	if (n < 0)
+		return (sig_n);
+	sig_n = n;
+	return (sig_n);
 }

@@ -6,13 +6,20 @@
 /*   By: vzurera- <vzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:35:46 by vzurera-          #+#    #+#             */
-/*   Updated: 2026/02/10 13:12:44 by vzurera-         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:12:49 by vzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select.h"
-#include <stdlib.h>
-#include <termcap.h>
+
+void	terminal_do_action(const char *action)
+{
+	char	*value;
+
+	value = tgetstr(action, NULL);
+	if (value)
+		write(STDOUT_FILENO, value, ft_strlen(value));
+}
 
 void	terminal_update_limits(t_terminal *terminal)
 {

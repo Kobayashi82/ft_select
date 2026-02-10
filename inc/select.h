@@ -6,15 +6,20 @@
 /*   By: vzurera- <vzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 12:20:38 by vzurera-          #+#    #+#             */
-/*   Updated: 2026/02/10 13:12:46 by vzurera-         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:12:42 by vzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+#define _GNU_SOURCE
+
 #include "utils.h"
+#include <errno.h>
 #include <unistd.h>
+#include <signal.h>
 #include <termios.h>
+#include <termcap.h>
 
 #define NC   	"\033[0m"		 	// Default
 
@@ -39,6 +44,21 @@
 #define UN 		"\033[4m"		 	// Underline
 #define IT 		"\033[3m"		 	// Italic
 
+#define CURSOR_SHOW		"ve"
+#define CURSOR_HIDE		"vi"
+#define ALTERNATE_ON	"ti"
+#define ALTERNATE_OFF	"te"
+#define CLEAR			"cl"
+
+typedef struct s_choices
+{
+	char				*value;
+	int					selected;
+	int					marked;
+	struct s_choices	*prev;
+	struct s_choices	*next;
+}	t_choices;
+
 typedef struct s_buffer
 {
 	unsigned char	c;
@@ -57,9 +77,8 @@ typedef struct s_terminal
 	t_buffer		buffer;
 }	t_terminal;
 
-extern int	g_signal;
-
-void		signals_set(void);
+void		signal_set(void);
+int			signal_number(int n);
 void		enable_raw_mode(t_terminal *terminal);
 void		disable_raw_mode(t_terminal *terminal);
 void		terminal_update_limits(t_terminal *terminal);
@@ -79,6 +98,5 @@ void		cursor_set(size_t new_row, size_t new_col);
 void		cursor_move(size_t from, size_t to);
 void		cursor_update(size_t length);
 void		cursor_start_column(void);
-void		cursor_hide(void);
-void		cursor_show(void);
 int			write_value(int fd, const char *value, size_t length);
+void		terminal_do_action(const char *action);
