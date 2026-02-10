@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vzurera- <vzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/09 12:20:32 by vzurera-          #+#    #+#             */
-/*   Updated: 2026/02/10 12:34:45 by vzurera-         ###   ########.fr       */
+/*   Created: 2026/02/10 13:00:36 by vzurera-          #+#    #+#             */
+/*   Updated: 2026/02/10 13:02:41 by vzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "select.h"
+#pragma once
 
-int main(int argc, char **argv) {
-	(void) argc;
-	(void) argv;
-	return (0);
-}
+#include <stddef.h>
+
+size_t	ft_strlen(const char *str);

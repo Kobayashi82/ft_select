@@ -6,7 +6,7 @@
 #    By: vzurera- <vzurera-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/09 12:29:00 by vzurera-          #+#    #+#              #
-#    Updated: 2026/02/09 12:29:01 by vzurera-         ###   ########.fr        #
+#    Updated: 2026/02/10 13:11:25 by vzurera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ NAME		= ft_select
 # ─────────── #
 
 CC			= clang
-CFLAGS		= -Wall -Wextra -Werror -O2
+CFLAGS		= -Wall -Wextra -Werror
 
 # ───────────────── #
 # ── DIRECTORIES ── #
@@ -59,7 +59,11 @@ SRC_DIR		= src/
 # ── FILES ── #
 # ─────────── #
 
-SRCS		= main.c
+SRCS		= main.c		\
+			  signal.c		\
+			  terminal.c	\
+			  termcap.c		\
+			  utils.c
 
 # ───────────────────────────────────────────────────────────── #
 # ─────────────────────────── RULES ─────────────────────────── #
@@ -80,15 +84,11 @@ _compile: $(OBJS)
 
 #	Compile library
 	@printf "\r%50s\r\t$(CYAN)Compiling... $(YELLOW)$(NAME)$(NC)"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -lm 
+	@$(CC) $(CFLAGS) $(OBJS) -ltermcap -o $(NAME)
 	@printf "\r%50s\r\t$(CYAN)Compiled    $(GREEN)✓ $(YELLOW)$(NAME)$(NC)\n"
 
 	@$(MAKE) -s _progress; printf "\n"
 	@$(MAKE) -s _show_cursor
-
-# 	sudo setcap cap_net_raw+ep $(NAME)
-# 	sudo setcap cap_net_raw,cap_net_admin+ep $(NAME)
-#	sudo setcap -r $(NAME)
 
 # ───────────── #
 # ── OBJECTS ── #
@@ -215,7 +215,7 @@ fclean:
 _title:
 	@clear
 	@printf "\n$(NC)\t$(INV_CYAN) $(BG_CYAN)$(FG_YELLOW)★$(INV_CYAN) $(BG_CYAN)$(FG_YELLOW)★$(INV_CYAN) $(BG_CYAN)$(FG_YELLOW)★\
-	$(INV_CYAN)  $(NC)$(INV_CYAN)$(shell echo $(NAME) | tr a-z A-Z | tr '_' ' ')$(INV_CYAN)  \
+	$(INV_CYAN) $(NC)$(INV_CYAN)$(shell echo $(NAME) | tr a-z A-Z | tr '_' ' ')$(INV_CYAN) \
 	$(BG_CYAN)$(FG_YELLOW)★$(INV_CYAN) $(BG_CYAN)$(FG_YELLOW)★$(INV_CYAN) $(BG_CYAN)$(FG_YELLOW)★$(INV_CYAN) $(NC)\n"
 	@printf "\t$(WHITE)───────────────────────\n$(NC)"
 
